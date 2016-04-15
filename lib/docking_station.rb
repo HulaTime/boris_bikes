@@ -23,8 +23,8 @@ class DockingStation
     bikes.pop
   end
 
-  def remove_broken_bikes
-    delivery = @bikes.select {|b| !b.working?}
+  def remove_broken_bikes(num = 2)
+    delivery = @bikes.select {|b| !b.working?}.first(num)
     @bikes -= delivery
     delivery
   end

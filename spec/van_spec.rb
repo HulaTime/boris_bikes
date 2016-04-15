@@ -13,4 +13,18 @@ describe Van do
     expect(van.bikes).to eq [bike2, bike3]
   end
 
+  it 'new van should have a capacity of 2' do
+    expect(van.capacity).to eq Van::DEFAULT_CAPACITY
+  end
+
+=begin
+  context 'when van is full' do
+    it 'should pass the current capacity to the docking station' do
+      docking_station = spy(:docking_station)
+      van.take_from(docking_station)
+      expect(docking_station).to have_received(:remove_broken_bikes).with(2)
+    end
+  end
+=end
+
 end
