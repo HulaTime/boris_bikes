@@ -1,8 +1,14 @@
 require 'docking_station'
 
 describe DockingStation do
+let(:station) { described_class.new }
 let(:bike) { double(:bike) } # dependency
 let(:bikes) { subject.bikes } # OK!
+let(:bike1) { double( :bike1, working?: true)}
+let(:bike2) { double( :bike2, working?: false)}
+let(:bike3) { double( :bike3, working?: false)}
+let(:broken_bikes) { [bike2,bike3] }
+
   it 'has a DEFAULT_CAPACITY unless capacity is specified' do    #ok
     expect subject.capacity == DockingStation::DEFAULT_CAPACITY  #ok
   end
@@ -85,5 +91,13 @@ end
   end
 
   it { is_expected.to respond_to(:bikes) } # ok
+
+  it 'removes all broken bikes' do
+    subject.dock(bike1)
+    subject.dock(bike2)
+    subject.dock(bike3)
+    expect(subject.remove_broken_bikes).to eq broken_bikes
+    expect(bikes).to eq [bike1]
+  end
 
 end

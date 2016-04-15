@@ -8,7 +8,7 @@ class Van
   end
 
   def take_from(station)
-    @bikes += station.bikes.select { |b| !b.working? }
+    @bikes += station.remove_broken_bikes
   end
 
 end

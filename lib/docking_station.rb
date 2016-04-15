@@ -23,6 +23,12 @@ class DockingStation
     bikes.pop
   end
 
+  def remove_broken_bikes
+    delivery = @bikes.select {|b| !b.working?}
+    @bikes -= delivery
+    delivery
+  end
+
 
   private
   def full?

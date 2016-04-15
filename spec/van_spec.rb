@@ -8,7 +8,7 @@ describe Van do
   let(:bike3) { double( :bike3, working?: false)}
 
   it 'takes broken bikes ' do
-    allow(station).to receive(:bikes).and_return([bike1, bike2, bike3])
+    allow(station).to receive(:remove_broken_bikes).and_return([bike2, bike3])
     van.take_from(station)
     expect(van.bikes).to eq [bike2, bike3]
   end
